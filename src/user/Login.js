@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Login() {
+export function Login() {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <label htmlFor='login-username'>Username:</label>

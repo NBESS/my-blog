@@ -1,8 +1,8 @@
 import './App.css';
-import Login from './user/Login';
+import { UserBar } from './user/UserBar';
 
 function App() {
-  return <Login />;
+  return <UserBar />;
 }
 
 export default App;
