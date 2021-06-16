@@ -1,10 +1,11 @@
+import React, { useState } from 'react';
+
 import './App.css';
 
 import { PostList } from './post/PostList';
 import { CreatePost } from './post/CreatePost';
 import { UserBar } from './user/UserBar';
 
-const user = 'Nick Bess';
 const posts = [
   {
     title: 'Post 1 Title',
@@ -19,11 +20,12 @@ const posts = [
 ];
 
 function App() {
+  const [user, setUser] = useState('');
   return (
     <div style={{ padding: 8 }}>
-      <UserBar />
+      <UserBar user={user} setUser={setUser} />
       <br />
-      <CreatePost user={user} />
+      {user && <CreatePost user={user} />}
       <br />
       <hr />
       <PostList posts={posts} />
