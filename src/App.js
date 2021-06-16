@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-
-import './App.css';
+import React, { useState, useReducer } from 'react';
 
 import { PostList } from './post/PostList';
 import { CreatePost } from './post/CreatePost';
 import { UserBar } from './user/UserBar';
 
-const posts = [
+import appReducer from './reducers';
+import './App.css';
+
+const defaultPosts = [
   {
     title: 'Post 1 Title',
     content: 'This is going better than expected!',
@@ -20,12 +21,17 @@ const posts = [
 ];
 
 function App() {
-  const [user, setUser] = useState('');
+  const [state, dispatch] = useReducer(appReducer, {
+    user: '',
+    posts: defaultPosts,
+  });
+
+  const { user, posts } = state;
   return (
     <div style={{ padding: 8 }}>
-      <UserBar user={user} setUser={setUser} />
+      <UserBar user={user} dispatch={dispatch} />
       <br />
-      {user && <CreatePost user={user} />}
+      {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
       <br />
       <hr />
       <PostList posts={posts} />
