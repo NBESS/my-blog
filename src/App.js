@@ -31,14 +31,30 @@ function userReducer(state, action) {
   }
 }
 
+function postsReducer(state, action) {
+  switch (action.type) {
+    case 'CREATE_POST':
+      const newPost = {
+        title: action.title,
+        content: action.content,
+        author: action.author,
+      };
+      return [newPost, ...state];
+    default:
+      throw new Error();
+  }
+}
+
 function App() {
   const [user, dispatchUser] = useReducer(userReducer, '');
-  const [posts, setPosts] = useState(defaultPosts);
+  const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
   return (
     <div style={{ padding: 8 }}>
       <UserBar user={user} dispatch={dispatchUser} />
       <br />
-      {user && <CreatePost user={user} posts={posts} setPosts={setPosts} />}
+      {user && (
+        <CreatePost user={user} posts={posts} dispatch={dispatchPosts} />
+      )}
       <br />
       <hr />
       <PostList posts={posts} />
