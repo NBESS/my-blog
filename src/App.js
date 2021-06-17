@@ -6,7 +6,7 @@ import { UserBar } from './user/UserBar';
 import Header from './Header';
 import ChangeTheme from './ChangeTheme';
 
-import { ThemeContext } from './contexts';
+import { ThemeContext, StateContext } from './contexts';
 import appReducer from './reducers';
 import './App.css';
 
@@ -44,19 +44,21 @@ function App() {
   }, [user]);
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <div style={{ padding: 8 }}>
-        <Header text='Personal Blog' />
-        <ChangeTheme theme={theme} setTheme={setTheme} />
-        <br />
-        <UserBar user={user} dispatch={dispatch} />
-        <br />
-        {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
-        <br />
-        <hr />
-        <PostList posts={posts} />
-      </div>
-    </ThemeContext.Provider>
+    <StateContext.Provider value={{ state, dispatch }}>
+      <ThemeContext.Provider value={theme}>
+        <div style={{ padding: 8 }}>
+          <Header text='Personal Blog' />
+          <ChangeTheme theme={theme} setTheme={setTheme} />
+          <br />
+          <UserBar />
+          <br />
+          {user && <CreatePost />}
+          <br />
+          <hr />
+          <PostList />
+        </div>
+      </ThemeContext.Provider>
+    </StateContext.Provider>
   );
 }
 
