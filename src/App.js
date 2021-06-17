@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import { PostList } from './post/PostList';
 import { CreatePost } from './post/CreatePost';
@@ -27,6 +27,15 @@ function App() {
   });
 
   const { user, posts } = state;
+
+  useEffect(() => {
+    if (user) {
+      document.title = `${user} - Personal Blog`;
+    } else {
+      document.title = 'Blog Site';
+    }
+  }, [user]);
+
   return (
     <div style={{ padding: 8 }}>
       <UserBar user={user} dispatch={dispatch} />
