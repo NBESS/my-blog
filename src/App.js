@@ -5,6 +5,7 @@ import { CreatePost } from './post/CreatePost';
 import { UserBar } from './user/UserBar';
 import Header from './Header';
 
+import { ThemeContext } from './contexts';
 import appReducer from './reducers';
 import './App.css';
 
@@ -38,15 +39,18 @@ function App() {
   }, [user]);
 
   return (
-    <div style={{ padding: 8 }}>
-      <Header text='Personal Blog' />
-      <UserBar user={user} dispatch={dispatch} />
-      <br />
-      {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
-      <br />
-      <hr />
-      <PostList posts={posts} />
-    </div>
+    <ThemeContext.Provider
+      value={{ primaryColor: 'deepskyblue', secondaryColor: 'coral' }}>
+      <div style={{ padding: 8 }}>
+        <Header text='Personal Blog' />
+        <UserBar user={user} dispatch={dispatch} />
+        <br />
+        {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
+        <br />
+        <hr />
+        <PostList posts={posts} />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
