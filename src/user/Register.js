@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-export function Register({ dispatch }) {
+import { StateContext } from '../contexts';
+
+export function Register() {
+  const { dispatch } = useContext(StateContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
@@ -37,6 +40,7 @@ export function Register({ dispatch }) {
         name='register-password'
         id='register-password'
       />
+      <label htmlFor='register-password-repeat'>Repeat password</label>
       <input
         type='password'
         value={passwordRepeat}
