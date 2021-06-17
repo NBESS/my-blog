@@ -3,6 +3,7 @@ import React, { useReducer, useEffect } from 'react';
 import { PostList } from './post/PostList';
 import { CreatePost } from './post/CreatePost';
 import { UserBar } from './user/UserBar';
+import Header from './Header';
 
 import appReducer from './reducers';
 import './App.css';
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <div style={{ padding: 8 }}>
+      <Header text='Personal Blog' />
       <UserBar user={user} dispatch={dispatch} />
       <br />
       {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
