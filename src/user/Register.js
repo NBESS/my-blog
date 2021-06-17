@@ -37,6 +37,7 @@ export function Register({ dispatch }) {
         name='register-password'
         id='register-password'
       />
+      <label htmlFor='register-password-repeat'>Repeat password</label>
       <input
         type='password'
         value={passwordRepeat}
