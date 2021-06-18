@@ -10,19 +10,6 @@ import { ThemeContext, StateContext } from './contexts';
 import appReducer from './reducers';
 import './App.css';
 
-const defaultPosts = [
-  {
-    title: 'Post 1 Title',
-    content: 'This is going better than expected!',
-    author: 'Nick Bess',
-  },
-  {
-    title: 'Post 2 Title',
-    content: 'Things are still going well. No complaints on my end!',
-    author: 'Nick Bess',
-  },
-];
-
 function App() {
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
@@ -30,10 +17,16 @@ function App() {
   });
   const [state, dispatch] = useReducer(appReducer, {
     user: '',
-    posts: defaultPosts,
+    posts: [],
   });
 
   const { user } = state;
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then((result) => result.json())
+      .then((posts) => dispatch({ type: 'FETCH_POSTS', posts }));
+  }, []);
 
   useEffect(() => {
     if (user) {
