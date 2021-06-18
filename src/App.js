@@ -5,6 +5,7 @@ import { CreatePost } from './post/CreatePost';
 import { UserBar } from './user/UserBar';
 import Header from './Header';
 import ChangeTheme from './ChangeTheme';
+import { useResource } from 'react-request-hook';
 
 import { ThemeContext, StateContext } from './contexts';
 import appReducer from './reducers';
@@ -22,11 +23,18 @@ function App() {
 
   const { user } = state;
 
+  const [posts, getPosts] = useResource(() => ({
+    url: '/posts',
+    method: 'get',
+  }));
+
+  useEffect(getPosts, []);
+
   useEffect(() => {
-    fetch('/api/posts')
-      .then((result) => result.json())
-      .then((posts) => dispatch({ type: 'FETCH_POSTS', posts }));
-  }, []);
+    if (posts && posts.data) {
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data });
+    }
+  }, [posts]);
 
   useEffect(() => {
     if (user) {
