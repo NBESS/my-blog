@@ -36,7 +36,7 @@ function App() {
       dispatch({ type: 'POSTS_ERROR' });
     }
     if (posts && posts.data) {
-      dispatch({ type: 'FETCH_POSTS', posts: posts.data });
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() });
     }
   }, [posts]);
 

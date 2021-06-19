@@ -11,15 +11,41 @@
       "title": "Post 2 Title",
       "content": "Things are still going well. No complaints on my end!",
       "author": "Nick Bess"
+    },
+    {
+      "title": "Post 3 Title",
+      "content": "This is only a test!",
+      "author": "joe",
+      "id": "641cQeR"
     }
   ],
   "users": [
-    { "id": 1, "username": "Nick Bess", "password": "notsosecure" },
-    { "id": 2, "username": "John Doe", "password": "superunsafe" }
+    {
+      "id": 1,
+      "username": "Nick Bess",
+      "password": "notsosecure"
+    },
+    {
+      "id": 2,
+      "username": "John Doe",
+      "password": "superunsafe"
+    }
   ],
   "themes": [
-    { "id": 1, "primaryColor": "deepskyblue", "secondaryColor": "coral" },
-    { "id": 2, "primaryColor": "orchid", "secondaryColor": "mediumseagreen" },
-    { "id": 3, "primaryColor": "darkslategray", "secondaryColor": "slategray" }
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "coral"
+    },
+    {
+      "id": 2,
+      "primaryColor": "orchid",
+      "secondaryColor": "mediumseagreen"
+    },
+    {
+      "id": 3,
+      "primaryColor": "darkslategray",
+      "secondaryColor": "slategray"
+    }
   ]
 }
