@@ -17,6 +17,18 @@
       "content": "This is only a test!",
       "author": "joe",
       "id": "641cQeR"
+    },
+    {
+      "title": "John's Test",
+      "content": "This is a test for user John Doe!",
+      "author": "John Doe",
+      "id": "jQ5S74U"
+    },
+    {
+      "title": "Johnny's Test",
+      "content": "This is Johnny's test.",
+      "author": "Johnny Doe",
+      "id": "EfSao2j"
     }
   ],
   "users": [
@@ -29,6 +41,11 @@
       "id": 2,
       "username": "John Doe",
       "password": "superunsafe"
+    },
+    {
+      "username": "Johnny Doe",
+      "password": "123456",
+      "id": 3
     }
   ],
   "themes": [
