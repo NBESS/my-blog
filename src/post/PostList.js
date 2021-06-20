@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { Post } from './Post';
+import Post from './Post';
 import { StateContext } from '../contexts';
 
 export function PostList() {

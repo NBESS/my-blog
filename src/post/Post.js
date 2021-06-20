@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 
 import { ThemeContext } from '../contexts';
 
-export function Post({ title, content, author }) {
+function Post({ title, content, author }) {
+  console.log('Rendering post');
   const { secondaryColor } = useContext(ThemeContext);
   return (
     <div>
@@ -15,3 +16,5 @@ export function Post({ title, content, author }) {
     </div>
   );
 }
+
+export default React.memo(Post);
