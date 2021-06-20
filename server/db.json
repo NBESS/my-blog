@@ -1,0 +1,68 @@
+{
+  "posts": [
+    {
+      "id": "post-1",
+      "title": "Post 1 Title",
+      "content": "This is going better than expected!",
+      "author": "Nick Bess"
+    },
+    {
+      "id": "post-2",
+      "title": "Post 2 Title",
+      "content": "Things are still going well. No complaints on my end!",
+      "author": "Nick Bess"
+    },
+    {
+      "title": "Post 3 Title",
+      "content": "This is only a test!",
+      "author": "joe",
+      "id": "641cQeR"
+    },
+    {
+      "title": "John's Test",
+      "content": "This is a test for user John Doe!",
+      "author": "John Doe",
+      "id": "jQ5S74U"
+    },
+    {
+      "title": "Johnny's Test",
+      "content": "This is Johnny's test.",
+      "author": "Johnny Doe",
+      "id": "EfSao2j"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Nick Bess",
+      "password": "notsosecure"
+    },
+    {
+      "id": 2,
+      "username": "John Doe",
+      "password": "superunsafe"
+    },
+    {
+      "username": "Johnny Doe",
+      "password": "123456",
+      "id": 3
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "coral"
+    },
+    {
+      "id": 2,
+      "primaryColor": "orchid",
+      "secondaryColor": "mediumseagreen"
+    },
+    {
+      "id": 3,
+      "primaryColor": "darkslategray",
+      "secondaryColor": "slategray"
+    }
+  ]
+}

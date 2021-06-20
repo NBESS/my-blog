@@ -5,23 +5,11 @@ import { CreatePost } from './post/CreatePost';
 import { UserBar } from './user/UserBar';
 import Header from './Header';
 import ChangeTheme from './ChangeTheme';
+import { useResource } from 'react-request-hook';
 
 import { ThemeContext, StateContext } from './contexts';
 import appReducer from './reducers';
 import './App.css';
-
-const defaultPosts = [
-  {
-    title: 'Post 1 Title',
-    content: 'This is going better than expected!',
-    author: 'Nick Bess',
-  },
-  {
-    title: 'Post 2 Title',
-    content: 'Things are still going well. No complaints on my end!',
-    author: 'Nick Bess',
-  },
-];
 
 function App() {
   const [theme, setTheme] = useState({
@@ -30,10 +18,27 @@ function App() {
   });
   const [state, dispatch] = useReducer(appReducer, {
     user: '',
-    posts: defaultPosts,
+    posts: [],
+    error: '',
   });
 
-  const { user } = state;
+  const { user, error } = state;
+
+  const [posts, getPosts] = useResource(() => ({
+    url: '/posts',
+    method: 'get',
+  }));
+
+  useEffect(getPosts, []);
+
+  useEffect(() => {
+    if (posts && posts.error) {
+      dispatch({ type: 'POSTS_ERROR' });
+    }
+    if (posts && posts.data) {
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() });
+    }
+  }, [posts]);
 
   useEffect(() => {
     if (user) {
@@ -50,11 +55,14 @@ function App() {
           <Header text='Personal Blog' />
           <ChangeTheme theme={theme} setTheme={setTheme} />
           <br />
-          <UserBar />
+          <React.Suspense fallback={'Loading...'}>
+            <UserBar />
+          </React.Suspense>
           <br />
           {user && <CreatePost />}
           <br />
           <hr />
+          {error && <b>{error}</b>}
           <PostList />
         </div>
       </ThemeContext.Provider>
