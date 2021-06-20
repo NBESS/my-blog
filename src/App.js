@@ -55,7 +55,9 @@ function App() {
           <Header text='Personal Blog' />
           <ChangeTheme theme={theme} setTheme={setTheme} />
           <br />
-          <UserBar />
+          <React.Suspense fallback={'Loading...'}>
+            <UserBar />
+          </React.Suspense>
           <br />
           {user && <CreatePost />}
           <br />
