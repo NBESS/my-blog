@@ -1,10 +1,10 @@
 import React, { useEffect, useContext } from 'react';
-import { stateContext } from '../contexts';
+import { StateContext } from '../contexts';
 import { PostList } from '../post/PostList';
 import { useResource } from 'react-request-hook';
 
 export default function HomePage() {
-  const { state, dispatch } = useContext(stateContext);
+  const { state, dispatch } = useContext(StateContext);
   const { error } = state;
 
   const [posts, getPosts] = useResource(() => ({

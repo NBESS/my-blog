@@ -2,6 +2,7 @@ import React, { useReducer, useEffect, useState } from 'react';
 
 import HeaderBar from './pages/HeaderBar';
 import HomePage from './pages/HomePage';
+// import PostPage from './pages/PostPage';
 import { ThemeContext, StateContext } from './contexts';
 import appReducer from './reducers';
 import './App.css';
