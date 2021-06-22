@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useResource } from 'react-request-hook';
+import { useNavigation } from 'react-navi';
 
 import { StateContext } from '../contexts';
+import { Navigation } from 'navi';
 
 export function CreatePost() {
   const { state, dispatch } = useContext(StateContext);
@@ -14,10 +16,12 @@ export function CreatePost() {
     method: 'post',
     data: { title, content, author },
   }));
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (post && post.data) {
       dispatch({ type: 'CREATE_POST', ...post.data });
+      navigation.navigate(`/view/${post.data.id}`);
     }
   }, [post]);
 

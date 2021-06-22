@@ -35,6 +35,12 @@
       "content": "Using the react-navi and navi libraries can really make routing easy when using React Hooks.",
       "author": "Johnny Doe",
       "id": "U8rran9"
+    },
+    {
+      "title": "The useNavigation Hook",
+      "content": "The useNavigation from the navi library comes in handy when redirecting after creating new posts!",
+      "author": "Nick Bess",
+      "id": "Q252Lnf"
     }
   ],
   "users": [
