@@ -1,15 +1,21 @@
 import React, { useReducer, useEffect, useState } from 'react';
+import { Router, View } from 'react-navi';
+import { mount, route } from 'navi';
 
-import { PostList } from './post/PostList';
-import { CreatePost } from './post/CreatePost';
-import { UserBar } from './user/UserBar';
-import Header from './Header';
-import ChangeTheme from './ChangeTheme';
-import { useResource } from 'react-request-hook';
-
+import HeaderBar from './pages/HeaderBar';
+import HomePage from './pages/HomePage';
+import PostPage from './pages/PostPage';
 import { ThemeContext, StateContext } from './contexts';
 import appReducer from './reducers';
 import './App.css';
+import FooterBar from './pages/FooterBar';
+
+const routes = mount({
+  '/': route({ view: <HomePage /> }),
+  '/view/:id': route((req) => {
+    return { view: <PostPage id={req.params.id} /> };
+  }),
+});
 
 function App() {
   const [theme, setTheme] = useState({
@@ -22,23 +28,7 @@ function App() {
     error: '',
   });
 
-  const { user, error } = state;
-
-  const [posts, getPosts] = useResource(() => ({
-    url: '/posts',
-    method: 'get',
-  }));
-
-  useEffect(getPosts, []);
-
-  useEffect(() => {
-    if (posts && posts.error) {
-      dispatch({ type: 'POSTS_ERROR' });
-    }
-    if (posts && posts.data) {
-      dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() });
-    }
-  }, [posts]);
+  const { user } = state;
 
   useEffect(() => {
     if (user) {
@@ -51,20 +41,14 @@ function App() {
   return (
     <StateContext.Provider value={{ state, dispatch }}>
       <ThemeContext.Provider value={theme}>
-        <div style={{ padding: 8 }}>
-          <Header text='Personal Blog' />
-          <ChangeTheme theme={theme} setTheme={setTheme} />
-          <br />
-          <React.Suspense fallback={'Loading...'}>
-            <UserBar />
-          </React.Suspense>
-          <br />
-          {user && <CreatePost />}
-          <br />
-          <hr />
-          {error && <b>{error}</b>}
-          <PostList />
-        </div>
+        <Router routes={routes}>
+          <div style={{ padding: 8 }}>
+            <HeaderBar setTheme={setTheme} />
+            <hr />
+            <View />
+            <FooterBar />
+          </div>
+        </Router>
       </ThemeContext.Provider>
     </StateContext.Provider>
   );
