@@ -29,6 +29,12 @@
       "content": "This is Johnny's test.",
       "author": "Johnny Doe",
       "id": "EfSao2j"
+    },
+    {
+      "title": "Routing with Hooks",
+      "content": "Using the react-navi and navi libraries can really make routing easy when using React Hooks.",
+      "author": "Johnny Doe",
+      "id": "U8rran9"
     }
   ],
   "users": [
