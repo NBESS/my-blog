@@ -1,13 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useResource } from 'react-request-hook';
+import { useInput } from 'react-hookedup';
 
 import { StateContext } from '../contexts';
 
 export function Register() {
   const { dispatch } = useContext(StateContext);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const { value: username, bindToInput: bindUsername } = useInput('');
+  const { value: password, bindToInput: bindPassword } = useInput('');
+  const { value: passwordRepeat, bindToInput: bindPasswordRepeat } =
+    useInput('');
   const [user, register] = useResource((username, password) => ({
     url: '/users',
     method: 'post',
@@ -20,16 +22,6 @@ export function Register() {
     }
   }, [user]);
 
-  function handleUsername(e) {
-    setUsername(e.target.value);
-  }
-  function handlePassword(e) {
-    setPassword(e.target.value);
-  }
-  function handlePasswordRepeat(e) {
-    setPasswordRepeat(e.target.value);
-  }
-
   return (
     <form
       onSubmit={(e) => {
@@ -40,7 +32,7 @@ export function Register() {
       <input
         type='text'
         value={username}
-        onChange={handleUsername}
+        {...bindUsername}
         name='register-username'
         id='register-username'
       />
@@ -48,7 +40,7 @@ export function Register() {
       <input
         type='password'
         value={password}
-        onChange={handlePassword}
+        {...bindPassword}
         name='register-password'
         id='register-password'
       />
@@ -56,7 +48,7 @@ export function Register() {
       <input
         type='password'
         value={passwordRepeat}
-        onChange={handlePasswordRepeat}
+        {...bindPasswordRepeat}
         name='register-password-repeat'
         id='register-password-repeat'
       />
