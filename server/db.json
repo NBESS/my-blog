@@ -41,6 +41,12 @@
       "content": "The useNavigation from the navi library comes in handy when redirecting after creating new posts!",
       "author": "Nick Bess",
       "id": "Q252Lnf"
+    },
+    {
+      "title": "Test 21",
+      "content": "This one tests the useInput Hook, which is a very helpful hook.",
+      "author": "Johnny Doe",
+      "id": "vFG5rEA"
     }
   ],
   "users": [
